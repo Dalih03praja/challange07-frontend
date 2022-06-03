@@ -1,8 +1,9 @@
 import { AUTH_ERROR, LOGIN, LOGOUT } from "./types";
+require('dotenv').config();
 
 export const registerUser = (data) => async (dispatch) => {
   try {
-    const response = await fetch("http://localhost:8000/api/v1/register", {
+    const response = await fetch(process.env.REGISTER, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,7 +26,7 @@ export const registerUser = (data) => async (dispatch) => {
 
 export const loginViaForm = (data) => async (dispatch) => {
   try {
-    const response = await fetch("http://localhost:8000/api/v1/auth/login", {
+    const response = await fetch(process.env.LOGIN, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -51,7 +52,7 @@ export const loginWithGoogle = (accessToken) => async (dispatch) => {
     const data = {
       access_token: accessToken,
     };
-    const response = await fetch("http://localhost:8000/api/v1/auth/google", {
+    const response = await fetch(process.env.LOGIN_GOOGLE, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

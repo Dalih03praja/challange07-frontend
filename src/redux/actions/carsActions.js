@@ -1,8 +1,9 @@
 import {GET_ALL_CARS, CARS_ERROR, FILTER_CARS} from "./types";
+require('dotenv').config();
 
 export const getAllCars = () => async (dispatch) => {
     try {
-        const response = await fetch("http://localhost:8000/api/v1/cars");
+        const response = await fetch(process.env.ALL_CARS);
         const data = await response.json();
         dispatch({
             type: GET_ALL_CARS,
